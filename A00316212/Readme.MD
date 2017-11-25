@@ -62,7 +62,7 @@ Asi mismo, podemos verificar la lista de los miembros del ambiente de descubrimi
 
 Ahora en un nodo diferente configuramos el primer microservicio y lo primero para esto es instalar las dependecias necesarias:
 
-![GitHub Logo2](Imagenes/dependenciasA.PNG)
+![GitHub Logo2](Imagenes/dependeciasA.PNG)
 
 Como lo hicimos anteriormente, creamos un usuario consul, le asignamos permisos y abrimos los puertos en el firewall para el agente:
 
@@ -150,11 +150,11 @@ Instalamos las dependencias necesarias:
       
   Creamos e inciamos el ambiente microservice_b:
     
-  ![GitHub Logo2](Imagenes/Servicio b.PNG)
+  ![GitHub Logo2](Imagenes/Serviciob.PNG)
       
   Instalamos la libreria flask en el ambiente y modificamos el archivo microservice_b.py
       
-  ![GitHub Logo2](Imagenes/Confiservicio b.PNG)
+  ![GitHub Logo2](Imagenes/Confiserviciob.PNG)
        
   Ejecutamos el script con el comando: $python microservice_b.py
         
