@@ -22,9 +22,6 @@
 ### Descripción
 El tercer parcial del curso sistemas operativos trata sobre la creación de servicios web y el uso de tecnologías para el descubrimiento de servicio
 
-![][1]
-**Figura 1.** Despliegue básico de microservicios
-
 ### Actividades
 1. Incluir nombre, código (5%)
 2. Ortografía y redacción cuando sea necesario (5%)
@@ -93,7 +90,7 @@ Despues de esto, creamos un archivo de configuración para el microservicio con 
   
  Iniciamos el agente en modo cliente (Usando una sesión de screen):
  
- ![GitHub Logo2](Imagenes/consul cliente.PNG)
+ ![GitHub Logo2](Imagenes/consulcliente.PNG)
  
  Unimos el cliente al ambiente de servicio (Le pasamos la ip de nuestro agente servidor):
  
@@ -101,7 +98,7 @@ Despues de esto, creamos un archivo de configuración para el microservicio con 
  
  Podemos verificar la lista de miembros del ambiente y ver que aparece nuestro agente cliente:
  
- ![GitHub Logo2](Imagenes/consul members.PNG)
+ ![GitHub Logo2](Imagenes/consulmembers.PNG)
  
 ### Balanceador de carga
 
@@ -113,7 +110,7 @@ Instalamos las dependencias necesarias:
  
  Abrimos los puertos en el firewall necesarios para el balanceador (Haproxy):
  
- ![GitHub Logo2](Imagenes/inicio balanceador.PNG)
+ ![GitHub Logo2](Imagenes/iniciobalanceador.PNG)
  
  Configuramos la plantilla  del consul-template
  
@@ -153,15 +150,15 @@ Instalamos las dependencias necesarias:
       
   Creamos e inciamos el ambiente microservice_b:
     
-   ![GitHub Logo2](Imagenes/Servicio b.PNG)
+  ![GitHub Logo2](Imagenes/Servicio b.PNG)
       
   Instalamos la libreria flask en el ambiente y modificamos el archivo microservice_b.py
       
-    ![GitHub Logo2](Imagenes/Confi servicio b.PNG)
+  ![GitHub Logo2](Imagenes/Confiservicio b.PNG)
        
   Ejecutamos el script con el comando: $python microservice_b.py
         
-    ![GitHub Logo2](Imagenes/exesereviciob.PNG)
+  ![GitHub Logo2](Imagenes/exesereviciob.PNG)
         
   Creamos el archivo de configuración del microservicio con un healthcheck:
        
@@ -172,7 +169,7 @@ Instalamos las dependencias necesarias:
   Iniciamos el agente consul en modo cliente en una sesión de screen:
        
        
-   ![GitHub Logo2](Imagenes/consult cliente microservicio b.PNG)
+  ![GitHub Logo2](Imagenes/consultclientemicroserviciob.PNG)
         
   Unimos el cliente al ambiente y verificamos la lista de miembros:
         
@@ -200,4 +197,3 @@ https://github.com/ICESI/so-microservices-python
 http://microservices.io/patterns/microservices.html
 http://microservices.io/patterns/apigateway.html
 
-[1]: images/Microservices_Deployment.png
