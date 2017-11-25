@@ -169,7 +169,7 @@ Instalamos las dependencias necesarias:
   Iniciamos el agente consul en modo cliente en una sesión de screen:
        
        
-  ![GitHub Logo2](Imagenes/consultclientemicroserviciob.PNG)
+  ![GitHub Logo2](Imagenes/consultclientemicroserviciob.PNG) 
         
   Unimos el cliente al ambiente y verificamos la lista de miembros:
         
