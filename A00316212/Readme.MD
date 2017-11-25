@@ -186,14 +186,16 @@ Instalamos las dependencias necesarias:
 
 
 
-5. Dentro del nodo que  esta sirviendo de web service se crea un nuevo contenedor y dentro de este contenedor se despliega un nuevo servicio web que en este caso seria un nuevo artefacto phyton source (un nuevo contenedor, con un servicio web diferente desplegado dentro de él), aqui se entraria a hacer uso del patron APi Gateway, ya que la implementación de este patron permite redijir la solicitud hacia el servicio web solicitado,funciona como una especie de router (mirandolo desde el punto de vista de redes informaticas).  Para la solución que nosotros proponemos es usar API Gateway. Sin embargo, hay diferentes formas de darle solución a este problema como por ejemplo:
+5. Dentro del nodo que  esta sirviendo de web service se crea un nuevo contenedor y dentro de este contenedor se despliega un nuevo servicio web que en este caso seria un nuevo artefacto phyton source (un nuevo contenedor, con un servicio web diferente desplegado dentro de él), aqui se entraria a hacer uso del patron APi Gateway, ya que la implementación de este patron permite redijir la solicitud hacia el servicio web solicitado,funciona como una especie de router (mirandolo desde el punto de vista de redes informaticas). 
 
-Protcolo publicador/suscriptor
+ ![GitHub Logo2](Imagenes/apigateway.jpg)
+
+
 
 
 
 ### Referencias
 https://github.com/ICESI/so-microservices-python  
-http://microservices.io/patterns/microservices.html
+http://microservices.io/patterns/microservices.html  
 http://microservices.io/patterns/apigateway.html
 
