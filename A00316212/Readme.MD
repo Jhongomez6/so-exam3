@@ -87,8 +87,8 @@ Se recomienda hacerlo en una sesión de screen para que corra en otro plano.
 
 Despues de esto, creamos un archivo de configuración para el microservicio con un healthcheck:
 
-# su consul
-$ echo '{"service": {"name": "microservice-a", "tags": ["flask"], "port": 8080,
+  su consul
+  echo '{"service": {"name": "microservice-a", "tags": ["flask"], "port": 8080,
   "check": {"script": "curl localhost:8080/health >/dev/null 2>&1", "interval": "10s"}}}' >/etc/consul.d/microservice-a.json
   
  Iniciamos el agente en modo cliente (Usando una sesión de screen):
@@ -103,24 +103,93 @@ $ echo '{"service": {"name": "microservice-a", "tags": ["flask"], "port": 8080,
  
  ![GitHub Logo2](Imagenes/consul members.PNG)
  
+### Balanceador de carga
+
+En un nodo diferente configuramos el balanceador de carga.
+
+Instalamos las dependencias necesarias:
+
+ ![GitHub Logo2](Imagenes/depbalanceador.PNG)
  
+ Abrimos los puertos en el firewall necesarios para el balanceador (Haproxy):
  
+ ![GitHub Logo2](Imagenes/inicio balanceador.PNG)
  
+ Configuramos la plantilla  del consul-template
+ 
+  vi /etc/consul-template/haproxy.tpl
+  
+ 
+ Dentro de la plantilla seteamos la ip de nuestro servidor:
+ 
+   ![GitHub Logo2](Imagenes/plantilla.PNG)
+   
+  Ejecutamos el siguiente comando para generar el archivo de condifuración del haproxy y verificamos que este configurado correctamente:
+  
+  consul-template -consul-addr "192.168.56.102:8500" -template "/etc/consul-template/haproxy.tpl:/etc/haproxy/haproxy.cfg" -once
+  
+  ![GitHub Logo2](Imagenes/haproxy.PNG)
+  
+  Con esto completamos los modulos necesarios para el esquema 1.
+  
+  4. Ahora adicionamos un servicio igual al ya desplegado para evidenciar como las peticiones al balanceador son dirigidas a la replica del servicio.
+  
+  ### Microservico B
+  
+  Procedemos igualmente que el microservicio A configurado anteriormente:
+  
+  Instalamos las dependencias en un nodo diferente:
+  
+   ![GitHub Logo2](Imagenes/depB.PNG)
+   
+   
+  Abrimos los puertos en el firewall necesarios para el agente consul y para poder acceder al microservicio:
+   
+      firewall-cmd --zone=public --add-port=8301/tcp --permanent
+      firewall-cmd --reload
+      firewall-cmd --zone=public --add-port=8080/tcp --permanent
+      firewall-cmd --reload
+      
+      
+  Creamos e inciamos el ambiente microservice_b:
+    
+      ![GitHub Logo2](Imagenes/Servicio b.PNG)
+      
+  Instalamos la libreria flask en el ambiente y modificamos el archivo microservice_b.py
+      
+        ![GitHub Logo2](Imagenes/Confi servicio b.PNG)
+       
+  Ejecutamos el script con el comando: $python microservice_b.py
+        
+        ![GitHub Logo2](Imagenes/exesereviciob.PNG)
+        
+  Creamos el archivo de configuración del microservicio con un healthcheck:
+       
+       su consul 
+       echo '{"service": {"name": "microservice-b", "tags": ["flask"], "port": 8080,
+       "check": {"script": "curl localhost/health:8080 >/dev/null 2>&1", "interval": "10s"}}}' >/etc/consul.d/microservice-b.json
+       
+  Iniciamos el agente consul en modo cliente en una sesión de screen:
+       
+       
+        ![GitHub Logo2](Imagenes/consult cliente microservicio b.PNG)
+        
+  Unimos el cliente al ambiente y verificamos la lista de miembros:
+        
+         ![GitHub Logo2](Imagenes/consultfinal.PNG)
+         
+   Finalmente, teniendo configurado los dos servicios iguales y el balanceador activo y configurado procedemos a realizar un petición web al balanceador por el puerto habilitado y vemos que en una primera instancia el balanceador dirige la petición al primer servicio:
+   
+   
+         ![GitHub Logo2](Imagenes/a.PNG)
+         
+ Pero cuando lo volvemos a ejecutar el balanceador dirige la carga a la replica del servicio, es decir, al servicio B:
+         
+          ![GitHub Logo2](Imagenes/b.PNG)
 
 
 
-
-
-
-
-
-
-
-5. Dentro del nodo que  esta sirviendo de web service se crea un nuevo contenedor y dentro de este contenedor se despliega un nuevo servicio 
-web que en este caso seria un nuevo artefacto phyton source (un nuevo contenedor, con un servicio web diferente desplegado dentro de él), aqui 
-se entraria a hacer uso del patron APi Gateway, ya que la implementación de este patron permite redijir la solicitud hacia el servicio web solicitado,
-funciona como una especie de router (mirandolo desde el punto de vista de redes informaticas).  
-Para la solución que nosotros proponemos es usar API Gateway. Sin embargo, hay diferentes formas de darle solución a este problema como por ejemplo:
+5. Dentro del nodo que  esta sirviendo de web service se crea un nuevo contenedor y dentro de este contenedor se despliega un nuevo servicio web que en este caso seria un nuevo artefacto phyton source (un nuevo contenedor, con un servicio web diferente desplegado dentro de él), aqui se entraria a hacer uso del patron APi Gateway, ya que la implementación de este patron permite redijir la solicitud hacia el servicio web solicitado,funciona como una especie de router (mirandolo desde el punto de vista de redes informaticas).  Para la solución que nosotros proponemos es usar API Gateway. Sin embargo, hay diferentes formas de darle solución a este problema como por ejemplo:
 
 Protcolo publicador/suscriptor
 
