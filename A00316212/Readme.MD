@@ -186,9 +186,21 @@ Instalamos las dependencias necesarias:
 
 
 
-5. Dentro del nodo que  esta sirviendo de web service se crea un nuevo contenedor y dentro de este contenedor se despliega un nuevo servicio web que en este caso seria un nuevo artefacto phyton source (un nuevo contenedor, con un servicio web diferente desplegado dentro de él), aqui se entraria a hacer uso del patron APi Gateway, ya que la implementación de este patron permite redijir la solicitud hacia el servicio web solicitado,funciona como una especie de router (mirandolo desde el punto de vista de redes informaticas). 
+5. Dentro del nodo que  esta sirviendo de web service se crea un nuevo contenedor y dentro de este contenedor se despliega un nuevo servicio web que en este caso seria un nuevo artefacto phyton source (un nuevo contenedor, con un servicio web diferente desplegado dentro de él), aqui se entraria a hacer uso del patron APi Gateway, ya que la implementación de este patron permite redigir la solicitud hacia el servicio web solicitado,funciona como una especie de router (mirandolo desde el punto de vista de redes informaticas). 
 
- ![GitHub Logo2](Imagenes/apigateway.jpg)
+      ![GitHub Logo2](Imagenes/apigateway.jpg)
+      
+      
+     
+ El uso de API Gateway tiene los siguientes beneficios:
+      
+      * Aísla los clientes de cómo la aplicación se divide en microservicios.
+      * Aísla a los clientes del problema de determinar las ubicaciones de las instancias de servicio.
+      * Proporciona la API óptima para cada cliente
+      * Reduce el número de solicitudes / viajes de ida y vuelta. Por ejemplo, API Gateway permite a los clientes recuperar
+      datos de múltiples servicios con un solo viaje de ida y vuelta. Menos solicitudes también significa menos sobrecarga y mejora la
+      experiencia del usuario.
+
 
 
 
