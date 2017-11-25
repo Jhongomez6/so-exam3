@@ -63,6 +63,53 @@ Asi mismo, podemos verificar la lista de los miembros del ambiente de descubrimi
 
 ### Microservico A
 
+Ahora en un nodo diferente configuramos el primer microservicio y lo primero para esto es instalar las dependecias necesarias:
+
+![GitHub Logo2](Imagenes/dependenciasA.PNG)
+
+Como lo hicimos anteriormente, creamos un usuario consul, le asignamos permisos y abrimos los puertos en el firewall para el agente:
+
+![GitHub Logo2](Imagenes/Captura3.PNG)
+
+Para ejecutar el microservicio creamos un usuario llamado microservices y asi mismo, creamos un ambiente llamado microservice_a  y lo activamos:
+
+![GitHub Logo2](Imagenes/Captura4.PNG)
+
+Instalamos la libeeria flask en el ambiente, creamos y ejecutamos el scrip microservice_a.py:
+
+![GitHub Logo2](Imagenes/Captura4.1.PNG)
+
+![GitHub Logo2](Imagenes/Captura5.PNG)
+
+Y ejecutamos el microservicio con el comando:: $python microservice_a.py.
+
+Se recomienda hacerlo en una sesión de screen para que corra en otro plano.
+
+Despues de esto, creamos un archivo de configuración para el microservicio con un healthcheck:
+
+# su consul
+$ echo '{"service": {"name": "microservice-a", "tags": ["flask"], "port": 8080,
+  "check": {"script": "curl localhost:8080/health >/dev/null 2>&1", "interval": "10s"}}}' >/etc/consul.d/microservice-a.json
+  
+ Iniciamos el agente en modo cliente (Usando una sesión de screen):
+ 
+ ![GitHub Logo2](Imagenes/consul cliente.PNG)
+ 
+ Unimos el cliente al ambiente de servicio (Le pasamos la ip de nuestro agente servidor):
+ 
+ $ consul join 192.168.107.42
+ 
+ Podemos verificar la lista de miembros del ambiente y ver que aparece nuestro agente cliente:
+ 
+ ![GitHub Logo2](Imagenes/consul members.PNG)
+ 
+ 
+ 
+ 
+
+
+
+
 
 
 
