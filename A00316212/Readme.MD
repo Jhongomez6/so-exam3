@@ -153,15 +153,15 @@ Instalamos las dependencias necesarias:
       
   Creamos e inciamos el ambiente microservice_b:
     
-      ![GitHub Logo2](Imagenes/Servicio b.PNG)
+   ![GitHub Logo2](Imagenes/Servicio b.PNG)
       
   Instalamos la libreria flask en el ambiente y modificamos el archivo microservice_b.py
       
-        ![GitHub Logo2](Imagenes/Confi servicio b.PNG)
+    ![GitHub Logo2](Imagenes/Confi servicio b.PNG)
        
   Ejecutamos el script con el comando: $python microservice_b.py
         
-        ![GitHub Logo2](Imagenes/exesereviciob.PNG)
+    ![GitHub Logo2](Imagenes/exesereviciob.PNG)
         
   Creamos el archivo de configuración del microservicio con un healthcheck:
        
@@ -172,20 +172,20 @@ Instalamos las dependencias necesarias:
   Iniciamos el agente consul en modo cliente en una sesión de screen:
        
        
-        ![GitHub Logo2](Imagenes/consult cliente microservicio b.PNG)
+   ![GitHub Logo2](Imagenes/consult cliente microservicio b.PNG)
         
   Unimos el cliente al ambiente y verificamos la lista de miembros:
         
-         ![GitHub Logo2](Imagenes/consultfinal.PNG)
+ ![GitHub Logo2](Imagenes/consultfinal.PNG)
          
    Finalmente, teniendo configurado los dos servicios iguales y el balanceador activo y configurado procedemos a realizar un petición web al balanceador por el puerto habilitado y vemos que en una primera instancia el balanceador dirige la petición al primer servicio:
    
    
-         ![GitHub Logo2](Imagenes/a.PNG)
+ ![GitHub Logo2](Imagenes/a.PNG)
          
  Pero cuando lo volvemos a ejecutar el balanceador dirige la carga a la replica del servicio, es decir, al servicio B:
          
-          ![GitHub Logo2](Imagenes/b.PNG)
+  ![GitHub Logo2](Imagenes/b.PNG)
 
 
 
